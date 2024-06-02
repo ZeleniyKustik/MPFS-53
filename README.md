@@ -1,6 +1,6 @@
 # Mindustry Potato File System
-Mindustry Potato File System - MPFS. A project for the game Mindustry, which creates a file system
-
+Mindustry Potato File System - MPFS. A project for the game Mindustry, which develops its own file system for logic
+Mindustry Potato File System - MPFS. Проект для игры Mindustry, который разрабатывает свою файловую систему для логики
 
 | Possible command list |
 | --- |
