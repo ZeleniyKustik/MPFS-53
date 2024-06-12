@@ -9,7 +9,7 @@ Mindustry Potato File System - MPFS. Проект для игры Mindustry, к�
 | --- |
 | Initialize memory with this maximum number of numbers for the object name - Creates a root catlog |
 | Reinitialize itself. - Dumps all information from the processor and reads the file system again |
-| Give me basic information about MPFS - Gives us the port size, Total memory size, Free memory size, number of cells per 1 block of memory, maximum number of digits for the object name |
+| Give me basic information about MPFS - Gives us the port size, Total memory size, Free memory size, number of cells per 1 block of memory |
 | Do a quick format - Clears all data in the root directory technically removing access to past memory, but the files themselves can still be recovered |
 | Do a full format - Completely clears memory |
 | Create an object of this type, with this name here, and load this data into it |
