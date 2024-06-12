@@ -12,7 +12,7 @@ Mindustry Potato File System - MPFS. Проект для игры Mindustry, к�
 | Give me basic information about MPFS - Gives us the port size, Total memory size, Free memory size, number of cells per 1 block of memory |
 | Do a quick format - Clears all data in the root directory technically removing access to past memory, but the files themselves can still be recovered |
 | Do a full format - Completely clears memory |
-| Create an object of this type, with this name here, and load this data into it |
+| Create an object with this name here, and load this data into it |
 | Give me information about what's in this folder - Recheck all the files in the folder |
 | Give me information about this folder - Gives the size of the folder and the number of objects in it |
 | Delete an object |
