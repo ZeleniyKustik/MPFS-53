@@ -6,13 +6,10 @@ read suc cell1 0
 jump 4 notEqual suc 1
 read command cell1 1
 jump 9 equal load_mpfs 1
-jump 42 greaterThan command 4
-jump 11 lessThan command 13
-jump 13 always command 13
-jump 19 greaterThan command 4
-jump 23 always command 8
-jump 27 greaterThan command 12
-jump 31 always command 16
+jump 40 greaterThan command 4
+jump 12 lessThan command 8
+jump 19 lessThan command 20
+jump 32 always command 20
 jump -1 equal command 1
 jump -1 equal command 2
 jump -1 equal command 3
@@ -21,6 +18,7 @@ jump -1 equal command 5
 jump -1 equal command 6
 jump -1 equal command 7
 jump -1 equal command 8
+jump 26 greaterThan command 13
 jump -1 equal command 9
 jump -1 equal command 10
 jump -1 equal command 11
