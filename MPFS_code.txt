@@ -1,15 +1,16 @@
-jump 4 equal start 1
+jump 5 equal start 1
 set start 1
 set load_mpfs 0
-set cache_edit 1
-read suc cell1 0
-jump 4 notEqual suc 1
-read command cell1 1
-jump 9 equal load_mpfs 1
-jump 40 greaterThan command 4
-jump 12 lessThan command 8
-jump 19 lessThan command 20
-jump 32 always command 20
+getlink port 1
+getlink head 2
+read suc port 0
+jump 5 notEqual suc 1
+read command port 1
+jump 10 equal load_mpfs 1
+jump 41 greaterThan command 4
+jump 13 lessThan command 8
+jump 20 lessThan command 20
+jump 33 always command 20
 jump -1 equal command 1
 jump -1 equal command 2
 jump -1 equal command 3
@@ -18,7 +19,7 @@ jump -1 equal command 5
 jump -1 equal command 6
 jump -1 equal command 7
 jump -1 equal command 8
-jump 26 greaterThan command 13
+jump 27 greaterThan command 13
 jump -1 equal command 9
 jump -1 equal command 10
 jump -1 equal command 11
@@ -36,7 +37,7 @@ print "Ошибка\n\n"
 print "Команда не может быть выаолнена.\n"
 print "Неизвестная команда"
 printflush message1
-write 500 cell1 0
+write 500 port 0
 end
 print "Ошибка\n\n"
 print "Команда не может быть выаолнена.\n"
@@ -44,5 +45,102 @@ print "В процессоре не хватает данных\n"
 print "или файловая система ещё не была\n"
 print "создана"
 printflush message1
-write 500 cell1 0
+write 500 port 0
 end
+print "Ошибка\n\n"
+print "Вы ввели не корректные вводные\n"
+print "для команды"
+printflush message1
+write 500 port 0
+end
+read data port 2
+op floor floor data b
+jump 49 notEqual floor data
+jump 49 lessThan data 1
+set frag_size data
+read data port 3
+jump 64 equal data 0
+jump 64 equal data 1
+jump 49 always floor 1
+set cache data
+jump 72 equal cache 0
+read data port 4
+op floor floor data b
+jump 49 notEqual floor data
+jump 49 lessThan data 1
+set cache_size data
+jump 73 always x false
+set cache_size 0
+read data port 5
+op floor floor data b
+jump 49 notEqual floor data
+jump 49 lessThan data 1
+set all_cap data
+read data port 6
+jump 82 equal data 1
+jump 82 equal data 0
+jump 49 always data 1
+set add_cache data
+set port_size 7
+read data port port_size
+write 8 port port_size
+read trash port port_size
+write data port port_size
+op add port_size port_size 1
+jump 84 equal trash 8
+op sub port_size port_size 1
+set block_size 0
+read data head block_size
+write 8 head block_size
+read trash head block_size
+write data head block_size
+op add block_size block_size 1
+jump 92 equal trash 8
+op sub block_size block_size 1
+op sub trash_1 block_size 1
+set trash_id 2
+set trash 0
+getlink cell trash_id
+read data cell trash_1
+write 8 cell trash_1
+read trash cell trash_1
+write data cell trash_1
+op add trash_id trash_id 1
+jump 101 equal trash 8
+op sub trash_id trash_id 3
+write cache head 1
+write block_size head 3
+set frag_size 4
+write frag_size head 4
+write cache_size head 6
+write all_cap head 13
+set cache_start 897
+write cache_start head 14
+op mul trash 64 cache_size
+op add cap_start trash 898
+write cap_start head 11
+op mul trash all_cap 48
+op add trash trash 1
+op add fat_start cap_start trash
+write fat_start head 12
+op div trash fat_start 64
+op mul mem_size trash_id block_size
+op sub mem_size mem_size trash
+op mul trash frag_size 2
+op add trash trash 1
+op mul trash_1 mem_size 2
+op div fat_size trash_1 trash
+op floor trash fat_size trash
+op ceil fat_size fat_size trash
+op sub mem_size trash_1 trash
+op mul mem_size mem_size 0.5
+op floor mem_size mem_size 0.5
+write mem_size head 2
+write fat_size head 5
+write mem_size head 7
+write mem_size head 8
+op add root_start cap_start fat_size
+op add root_start root_start 1
+write root_start head 9
+op add free_start root_start 1
+write free_start head 10
