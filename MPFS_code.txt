@@ -110,7 +110,6 @@ jump 101 equal trash 8
 op sub trash_id trash_id 3
 write cache head 1
 write block_size head 3
-set frag_size 4
 write frag_size head 4
 write cache_size head 6
 write all_cap head 13
