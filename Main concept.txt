@@ -1,0 +1,38 @@
+MPFS-53 is a 53 bit file system. The unusual number of bits is due to the fact that in mindustry it is normal to work with bits from 0 to 52. The scheme itself in mindustry is divided into 3 types of processor. 
+
+1. Main - responsible for the basic logic of the file system. Without changing every bit itself. 
+2. Allocator - receives various commands from the main processor and distributes the work between the "cores".
+3. Core - directly works with bits. It can read and modify bits. It can also convert floating point numbers to bitwise and vice versa.
+
+In MPFS-53 there is no way to enter the full path to a file and go directly to it. This is because mindustry has a relatively small memory block size. As a result,
+you cannot use long folder names or have a large file system depth. There is another reason why this will not happen. You have to read data from the port every time. 
+And compare it to the path that MPFS-53 is currently on. If you consider the speed of the processors in mindustry. This action will successfully reduce the speed of the operation.
+
+The solution to this problem is to capture objects or "Ping". The idea is that we slowly navigate through the catalogs to the objects we need. Then we capture them. 
+That is, MPFS-53 writes to the cache: 
+The bit that starts the table of the directory in which the object we want is located.
+The bit that starts the mention of the object in the catalog.
+The number of the memory fragment in which the object starts.
+
+The cache has a static size. It is determined during file system initialization. Based on the maximum number of captured objects. This is specified by the user.
+
+
+
+MPFS-53 это 53 битная файловая система. Необычное количество битов обусловленно тем что в mindustry нормальная работа с битами от 0 до 52. Сама схема в mindustry условна поделена на 3 вида процессора. 
+
+1. Main - отвечает за основную логику файловой системы. Не изменяя самомтоятельно каждый бит. 
+2. Allocator - принимает различные команды от основного процессора и распределяет работу между "ядрами".
+3. Core - на прямую работает с битами. Может читать и изменять биты. Так-же может переводить числа с плавающей запятой в побитовую запись и наоборот.
+
+В MPFS-53 нет способа введя полный путь к файлу сразу перейти к нему. Это обусловленно тем что в mindustry относительн маленький объём блоков памяти. 
+В результате чего нельзя использовать длинные имена папок или иметь большую глубину файловой системы. Есть ещё одна причина по которой этого не будет.
+Нужно будет каждый раз читать данные из порта. И сравнивать их с путём в котором сейчас находится MPFS-53. Если учесть скорость работы процессоров в mindustry. 
+Это действие будет успешно урезать скорость работы.
+
+Решением этой проблемы является захват объектов или "Ping". Суть в том что мы медленно по одной команде переходим по каталогам до нужных нам объектов. Затем мы захватываем их. 
+То есть MPFS-53 записывает в кэш: 
+Бит с которого начинается таблица каталога, в котором находится нужный нам объект.
+Бит с которого начинается упомянание объекта в каталоге.
+Номер фрагмента памяти в котором начинается объект.
+
+Кэш имеет статичный размер. Он определяется при инициализации файловой системы. Исходя из максимального количества захваченых объектов. Это указывается пользвателем.
