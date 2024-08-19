@@ -15,7 +15,9 @@ The bit that starts the mention of the object in the catalog.
 The number of the memory fragment in which the object starts.
 
 The cache has a static size. It is determined during file system initialization. Based on the maximum number of captured objects. This is specified by the user.
-
+There are 2 ports between mpfs-53 and the user. 
+1 (talk in variables) is for communication with the user. Commands, errors, names, etc. are sent there.
+2 (buffer in variables) for data exchange. Main does not look at them at all. If the Allocator detects a sector outlier. Allocator informs Main about it. Main then looks for a free sector.
 
 
 MPFS-53 это 53 битная файловая система. Необычное количество битов обусловленно тем что в mindustry нормальная работа с битами от 0 до 52. Сама схема в mindustry условна поделена на 3 вида процессора. 
@@ -36,3 +38,6 @@ MPFS-53 это 53 битная файловая система. Необычно
 Номер фрагмента памяти в котором начинается объект.
 
 Кэш имеет статичный размер. Он определяется при инициализации файловой системы. Исходя из максимального количества захваченых объектов. Это указывается пользвателем.
+Между mpfs-53 и пользователем есть 2 порта. 
+1 (talk в переменных) для общения с пользователем. Туда передаются команды, ошибки, имена и т.д.
+2 (buffer в переменных) для обмена данными. Main вообще не смотрит на них. Если Allocator обнаружил выход за сектор. Allocator сообщает об этом Main. После чего Main ищет свободный сектор.
