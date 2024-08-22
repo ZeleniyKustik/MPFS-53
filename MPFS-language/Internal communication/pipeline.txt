@@ -1,0 +1,4 @@
+Main -> data bus controller -> data bus -> cluster aloc -> command bufer
+command bufer -> cluster aloc -> command bufer
+
+command bufer -> cluster aloc -> data bus -> data bus controller -> Main
