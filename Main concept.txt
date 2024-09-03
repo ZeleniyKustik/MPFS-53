@@ -22,6 +22,8 @@ There are 2 ports between mpfs-53 and the user.
 2 (buffer in variables) for data exchange. Main does not look at them at all. If the Allocator detects a sector outlier. 
 Allocator informs Main about it. Main then looks for a free sector.
 
+In mpfs-53 there is a division into sectors and clusters. Clusters are made up of sectors. The division into clusters is physical. It is done so that mpfs can be larger. 1 sector cannot be in 2 sectors at the same time. All sectors must be the same size. So there are situations when a cluster will not be used because of the size of a sector
+
 
 MPFS-53 это 53 битная файловая система. Необычное количество битов обусловленно тем что в mindustry нормальная работа с битами от 0 до 52. 
 Сама схема в mindustry условна поделена на 3 вида процессора. 
@@ -48,4 +50,5 @@ MPFS-53 это 53 битная файловая система. Необычно
 2 (buffer в переменных) для обмена данными. Main вообще не смотрит на них. Если Allocator обнаружил выход за сектор. Allocator сообщает об этом Main. После чего Main ищет свободный сектор.
 
 В mpfs-53 есть деление на сектора и кластеры.
-Кластеры состоят из секторов. Деление на кластеры чисто физическое. Оно сделано для того чтобы mpfs мог быть больше.
+Кластеры состоят из секторов. Деление на кластеры физическое. Оно сделано для того чтобы mpfs мог быть больше.
+1 сектор не может находится в 2 секторах одновременно. Все сектора должны быть одинакового размера. То есть есть ситуации когда кластер будет использован не пользован из-за размера сектора
