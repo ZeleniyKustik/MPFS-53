@@ -1,5 +1,5 @@
 Запросы: data bus
-Ответы: cluster aloc
+Ответы: sub controller
 
 
 
