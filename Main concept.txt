@@ -1,9 +1,14 @@
 MPFS-53 is a 53 bit file system. The unusual number of bits is due to the fact that in mindustry it is normal to work with bits from 0 to 52. 
-The scheme itself in mindustry is divided into 3 types of processor. 
 
-1. Main - responsible for the basic logic of the file system. Without changing every bit itself. 
-2. Allocator - receives various commands from the main processor and distributes the work between the "cores".
-3. Core - directly works with bits. It can read and modify bits. It can also convert floating point numbers to bitwise and vice versa.
+Main - Controls all logic of the file system. To edit and read data it accesses controller. Main does not need to think about how data is written.
+Controller - Receives commands from Main. It tells the bus what commands to pass to which sub controller. And informs the bus that it needs to read something.
+data bus - Data bus. It is basically n number of processors. Each processor has its own id. The processor with 0 id distributes the duties between the processors in the bus. 
+Thus you get a multi-core data transfer.
+sub controller - Processor that controls the “data cluster”. 
+command bufer - An element that saves data into a buffer. It consists of n number of processors and memory blocks. Each processor has its own id. A processor with 0 id distributes duties among processors.
+core - Can be any number of processors. Can read and write data. Converts numbers to floating point numbers and back. Executes sub controller commands
+
+Translated with DeepL.com (free version)
 
 In MPFS-53 there is no way to enter the full path to a file and go directly to it. This is because mindustry has a relatively small memory block size. As a result,
 you cannot use long folder names or have a large file system depth. There is another reason why this will not happen. You have to read data from the port every time. 
@@ -26,12 +31,17 @@ In mpfs-53 there is a division into sectors and clusters. Clusters are made up o
 1 sector cannot be in 2 sectors at the same time. All sectors must be the same size. So there are situations when a cluster will not be used because of the size of a sector
 
 
-MPFS-53 это 53 битная файловая система. Необычное количество битов обусловленно тем что в mindustry нормальная работа с битами от 0 до 52. 
-Сама схема в mindustry условна поделена на 3 вида процессора. 
 
-1. Main - отвечает за основную логику файловой системы. Не изменяя самомтоятельно каждый бит. 
-2. Allocator - принимает различные команды от основного процессора и распределяет работу между "ядрами".
-3. Core - на прямую работает с битами. Может читать и изменять биты. Так-же может переводить числа с плавающей запятой в побитовую запись и наоборот.
+
+MPFS-53 это 53 битная файловая система. Необычное количество битов обусловленно тем что в mindustry нормальная работа с битами от 0 до 52. 
+
+Main - Управляет всей логикой файловой системы. Для редактирования и чтения данных обращается к controller. Main не нужно задумоватся как именно пишутся данные.
+controller - Принимает команды от Main. Он сообщает шине об том какие команды передать к каким sub controller. И сообщает шине то что нужно что-то прочесть
+data bus - Шина данных. По сути это n количество процессоров. У каждого процессора есть свой id. Процессор с 0 id распределяет обязаности между процессорами в шине. 
+Тем самым получается много ядерная передача данных.
+sub controller - Процессор управляющий "кластером данных". 
+command bufer - Элемент сохраняющий данные в буфер. Он состоит из n количества процессоров и блоков памяти. У каждого процессора есть свой id. Процессор с 0 id распределяет обязаности между процессорами.
+core - Может быть сколько угодно. Может читать и записывать данные. Переводит числа в числа с плавающей запятой и обратно. Выполняет команды sub controller
 
 В MPFS-53 нет способа введя полный путь к файлу сразу перейти к нему. Это обусловленно тем что в mindustry относительн маленький объём блоков памяти. 
 В результате чего нельзя использовать длинные имена папок или иметь большую глубину файловой системы. Есть ещё одна причина по которой этого не будет.
